@@ -1,2 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Knewave:regular);
+@import url(https://fonts.googleapis.com/css?family=Bungee:regular);
+
 @import "tailwindcss";
 @plugin "daisyui";
+
+* {
+    font-family: "Bungee";
+}
