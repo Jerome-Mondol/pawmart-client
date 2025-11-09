@@ -1,7 +1,7 @@
 import { Children, createContext, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { auth } from '../firebase/firebase.init' 
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 
 export const AuthContext = createContext(null);
 export const AuthProvider = ({children}) => {
@@ -29,8 +29,33 @@ export const AuthProvider = ({children}) => {
             toast.error(`Error: ${err.message}`)
         }
     }
+
+    // Login in
+    const logInWithEmailAndPassword = async (email, password) => {
+        try {
+            const result = await signInWithEmailAndPassword(auth, email, password);
+            toast.success("Successfully Logged in")
+            return result;
+        }
+        catch (err) {
+            toast.error(`Error: ${err.message}`)
+            console.log(err)
+        }
+    }
     
-    const value = {user, signUpWithEmailAndPassword}
+    // Signout
+    const emailPasswordSignOut = async () => {
+        try {
+            const result = await signOut(auth);
+            console.log(result);
+            toast.success("Successfully signed out");
+        }
+        catch(err) {
+            toast.error(`Error: ${err}`)
+        }
+    }
+    
+    const value = {user, signUpWithEmailAndPassword, emailPasswordSignOut, logInWithEmailAndPassword}
 
 
     return (

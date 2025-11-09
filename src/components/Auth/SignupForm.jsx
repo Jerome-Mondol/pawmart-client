@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router'
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router";
 import toast from "react-hot-toast";
+import { axiosInstance } from '../../axios/axios'
 
 const SignupForm = () => {
-    const { signUpWithEmailAndPassword, user } = useAuth();
+    const { signUpWithEmailAndPassword } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -27,6 +28,20 @@ const SignupForm = () => {
         return true;
     }
 
+    const insertUserInDB = async (name, photoURL, email) => {
+        try {
+            const result = await axiosInstance.post('/users', {
+            displayName: name,
+            photoURL,
+            email
+        })
+        console.log(result.data);;
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
+
     const handleSubmit = async (e) => {
         setIsLoading(true);
         setError(null);
@@ -45,7 +60,7 @@ const SignupForm = () => {
                 }
                 console.log(token)
                 setIsLoading(false);
-                
+                await insertUserInDB(name, photoURL, email);
                 navigate('/')
             }
             catch (err) {

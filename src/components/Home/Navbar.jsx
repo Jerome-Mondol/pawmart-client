@@ -9,7 +9,7 @@ const Navbar = () => {
   const publicLinks = [
     {
       link: "Home",
-      path: "/home"
+      path: "/"
     },
     {
       link: "Pets and Supplies",
@@ -19,7 +19,7 @@ const Navbar = () => {
   const privateLinks = [
     {
       link: "Home",
-      path: "/home"
+      path: "/"
     },
     {
       link: "Pets and Supplies",
@@ -49,7 +49,14 @@ const Navbar = () => {
     }
   ]
 
-  const { user } = useAuth();
+  const { user, emailPasswordSignOut } = useAuth();
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    await emailPasswordSignOut();
+    localStorage.removeItem('token');
+  }
+
 
   return (
     <>
@@ -97,10 +104,22 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className='flex justify-center items-center gap-5 ' >
             {
-              buttons.map(({ title, path }, index) => (
-                <Link key={index} to={path}><button className='bg-orange-600 px-5 py-2 rounded-lg cursor-pointer text-lg' >{title}</button></Link>
-              ))
+              !user ? (
+                buttons.map(({ title, path }, index) => (
+                  <Link key={index} to={path}>
+                    <button className="bg-orange-600 px-5 py-2 rounded-lg cursor-pointer text-lg">
+                      {title}
+                    </button>
+                  </Link>
+                ))
+              ) : (
+                <div className="flex items-center gap-2">
+                  <img src={user?.photoURL} alt="Profile" className="rounded-full h-15 w-15" />
+                  <button onClick={handleSignOut} className="bg-red-500 px-4 py-2 rounded-lg text-white cursor-pointer">Log out</button>
+                </div>
+              )
             }
+
           </div>
         </div>
       </div>
