@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
+import SignupForm from "../components/Auth/SignupForm";
 
 export const router = createBrowserRouter([
     {
@@ -12,5 +13,9 @@ export const router = createBrowserRouter([
                 Component: Home,
             }
         ]
+    },
+    {
+        path: '/register',
+        Component: SignupForm
     }
 ])

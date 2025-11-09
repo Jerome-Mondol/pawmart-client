@@ -1,9 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Knewave:regular);
 @import url(https://fonts.googleapis.com/css?family=Bungee:regular);
+@import url(https://fonts.googleapis.com/css?family=Space+Grotesk:300,regular,500,600,700);
 
 @import "tailwindcss";
 @plugin "daisyui";
 
 * {
     font-family: "Bungee";
+}
+
+.form-font {
+    font-family: "Space Grotesk"!important;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import Carousel from '../components/Carousel'
+import Carousel from '../components/Home/Carousel'
 import Category from '../sections/Category'
 import RecentListings from '../sections/RecentListings'
 import WhyAdopt from '../sections/WhyAdopt'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { axiosInstance } from '../axios/axios';
-import RecentListingsCard from '../components/RecentListingsCard';
+import RecentListingsCard from '../components/Home/RecentListingsCard';
 
 const RecentListings = () => {
   const[pets, setPets] = useState(null);

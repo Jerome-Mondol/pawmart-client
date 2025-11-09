@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryCard from '../components/CategoryCard'
+import CategoryCard from '../components/Home/CategoryCard'
 import { Link } from 'react-router';
 
 const Category = () => {
