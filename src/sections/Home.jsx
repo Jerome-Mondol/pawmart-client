@@ -2,6 +2,7 @@ import React from 'react'
 import Carousel from '../components/Carousel'
 import Category from './Category'
 import RecentListings from './RecentListings'
+import WhyAdopt from './WhyAdopt'
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
         <Carousel />
         <Category />
         <RecentListings />
+        <WhyAdopt />
       </div>
     </>
   )
