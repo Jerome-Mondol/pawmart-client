@@ -1,7 +1,8 @@
 import { Children, createContext, useContext, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { auth } from '../firebase/firebase.init' 
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+const provider = new GoogleAuthProvider();
 
 export const AuthContext = createContext(null);
 export const AuthProvider = ({children}) => {
@@ -42,6 +43,18 @@ export const AuthProvider = ({children}) => {
             console.log(err)
         }
     }
+
+    //  Sign in with google 
+    const signInWithGoogle = async () => { 
+        try {
+            const result = await signInWithPopup(auth, provider);
+            toast.success("Successfully logged in with Google")
+            return result;
+        }
+        catch (err) {
+            toast.error(`Error: ${err.message}`)
+        }
+    }
     
     // Signout
     const emailPasswordSignOut = async () => {
@@ -55,7 +68,7 @@ export const AuthProvider = ({children}) => {
         }
     }
     
-    const value = {user, signUpWithEmailAndPassword, emailPasswordSignOut, logInWithEmailAndPassword}
+    const value = {user, signUpWithEmailAndPassword, emailPasswordSignOut, logInWithEmailAndPassword, signInWithGoogle}
 
 
     return (

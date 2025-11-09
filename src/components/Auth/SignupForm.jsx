@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import { axiosInstance } from '../../axios/axios'
 
 const SignupForm = () => {
-    const { signUpWithEmailAndPassword } = useAuth();
+    const { signUpWithEmailAndPassword, signInWithGoogle } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -31,13 +31,13 @@ const SignupForm = () => {
     const insertUserInDB = async (name, photoURL, email) => {
         try {
             const result = await axiosInstance.post('/users', {
-            displayName: name,
-            photoURL,
-            email
-        })
-        console.log(result.data);;
+                displayName: name,
+                photoURL,
+                email
+            })
+            console.log(result.data);;
         }
-        catch(err) {
+        catch (err) {
             console.log(err)
         }
     }
@@ -55,10 +55,9 @@ const SignupForm = () => {
             try {
                 const result = await signUpWithEmailAndPassword(email, password, name, photoURL);
                 const token = await result.user.getIdToken();
-                if(token) {
+                if (token) {
                     localStorage.setItem('token', token);
                 }
-                console.log(token)
                 setIsLoading(false);
                 await insertUserInDB(name, photoURL, email);
                 navigate('/')
@@ -67,8 +66,24 @@ const SignupForm = () => {
                 toast.error(`Error: ${err.message}`)
             }
         }
-
     };
+
+    const handleGoogleSignIn = async() => {
+        setIsLoading(true);
+        try {
+            const result = await signInWithGoogle();
+            const token = result.user.getIdToken();
+            if(token) {
+                localStorage.setItem('token', token);
+            }
+            console.log(result);
+            setIsLoading(false);
+            navigate('/')
+        }
+        catch(err)  {
+            toast.error(`Error: ${err.message}`)
+        }
+    }
 
     return (
         <section className="min-h-screen bg-orange-50 flex items-center justify-center px-4 ">
@@ -111,11 +126,12 @@ const SignupForm = () => {
                         <input type="password" name="password" placeholder="••••••••" className="input input-bordered w-full rounded-lg form-font font-bold" required />
                     </div>
 
-                    {error && (
-                        <p className="text-red-500 text-sm text-center mt-2">
-                            {error}
-                        </p>
-                    )}
+                    <div onClick={handleGoogleSignIn} className="flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg px-5 py-2 cursor-pointer text-black text-lg font-medium shadow-sm transition-colors duration-200 shadow-sm">
+                        <img src="https://i.ibb.co.com/Cpn6Bksz/Google-G-logo-svg-Photoroom.png" alt="Google" className="w-6 h-6" />
+                        <span>Login with Google</span>
+                    </div>
+
+
 
                     <button type="submit" disabled={isLoading} className="btn bg-orange-500 hover:bg-orange-600 border-none w-full text-white text-lg rounded-lg" >
                         {isLoading ? "Creating Account..." : "Sign Up"}
