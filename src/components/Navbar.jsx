@@ -63,7 +63,7 @@ const Navbar = () => {
           <div className='flex justify-center items-center gap-5 ' >
             {
               buttons.map(({ title, path }, index) => (
-                <Link key={index} to={path}><button className='bg-orange-600 px-5 py-2 rounded-lg cursor-pointer text-sm' >{title}</button></Link>
+                <Link key={index} to={path}><button className='bg-orange-600 px-5 py-2 rounded-lg cursor-pointer text-lg' >{title}</button></Link>
               ))
             }
           </div>

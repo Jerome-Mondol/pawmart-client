@@ -18,7 +18,7 @@ const RecentListings = () => {
   }, [])
   return (
     <>
-        <div className='p-20' >
+        <div className='p-5 sm:p-20' >
             <h1 className='text-4xl text-orange-500' >Recent Listings</h1>
             <div className='grid justify-between items-center mt-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-5' >
               {
