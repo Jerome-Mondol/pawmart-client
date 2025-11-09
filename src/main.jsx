@@ -5,7 +5,5 @@ import './index.css'
 import { router } from './router/router'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
 )
