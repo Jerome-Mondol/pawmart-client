@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router'
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router";
 import toast from "react-hot-toast";
 
 const SignupForm = () => {
-    const { signUpWithEmailAndPassword } = useAuth();
+    const { signUpWithEmailAndPassword, user } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
 
     const validatePassword = (password) => {
         const hasUppercase = /[A-Z]/.test(password);
@@ -17,6 +20,7 @@ const SignupForm = () => {
             if (!hasUppercase) toast.error("At least 1 uppercase letter");
             if (!hasLowercase) toast.error("At least 1 lowercase letter");
             if (!hasMinLength) toast.error("At least 6 characters");
+            setIsLoading(false);
             return false;
         }
 
@@ -34,8 +38,15 @@ const SignupForm = () => {
 
         if (validatePassword(password)) {
             try {
-                await signUpWithEmailAndPassword(email, password, name, photoURL);
+                const result = await signUpWithEmailAndPassword(email, password, name, photoURL);
+                const token = await result.user.getIdToken();
+                if(token) {
+                    localStorage.setItem('token', token);
+                }
+                console.log(token)
                 setIsLoading(false);
+                
+                navigate('/')
             }
             catch (err) {
                 toast.error(`Error: ${err.message}`)

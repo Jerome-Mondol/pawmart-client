@@ -23,6 +23,7 @@ export const AuthProvider = ({children}) => {
                 photoURL
             })
             toast.success("Account Registered Successfully");
+            return result
         }
         catch (err) {
             toast.error(`Error: ${err.message}`)

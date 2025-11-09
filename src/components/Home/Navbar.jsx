@@ -1,11 +1,12 @@
 import React from 'react'
 import Logo from '../../assets/logo.png'
 import { Link } from 'react-router'
+import { useAuth } from '../../hooks/useAuth'
 
 
 const Navbar = () => {
 
-  const links = [
+  const publicLinks = [
     {
       link: "Home",
       path: "/home"
@@ -13,6 +14,28 @@ const Navbar = () => {
     {
       link: "Pets and Supplies",
       path: '/pets-and-supplies'
+    }
+  ]
+  const privateLinks = [
+    {
+      link: "Home",
+      path: "/home"
+    },
+    {
+      link: "Pets and Supplies",
+      path: '/pets-and-supplies'
+    },
+    {
+      link: "Add listing",
+      path: '/add-listing'
+    },
+    {
+      link: "My listing",
+      path: '/my-listing'
+    },
+    {
+      link: "My orders",
+      path: '/my-orders'
     }
   ]
   const buttons = [
@@ -26,6 +49,8 @@ const Navbar = () => {
     }
   ]
 
+  const { user } = useAuth();
+
   return (
     <>
       <div className="navbar bg-white shadow-sm px-4 ">
@@ -36,12 +61,17 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 w-52 p-2 shadow">
+              className="menu menu-sm dropdown-content bg-white rounded-box z-1 mt-3 w-auto p-2 shadow">
               <div className='flex justify-center items-center flex-row gap-8' >
                 {
-                  links.map(({ link, path }, index) => (
-                    <span key={index} className='text-[#7351d4]' ><Link to={path} >{link}</Link></span>
-                  ))
+                  user ?
+                    privateLinks.map(({ link, path }, index) => (
+                      <span key={index} className='text-[#7351d4]' ><Link to={path} >{link}</Link></span>
+                    ))
+                    :
+                    publicLinks.map(({ link, path }, index) => (
+                      <span key={index} className='text-[#7351d4]' ><Link to={path} >{link}</Link></span>
+                    ))
                 }
               </div>
             </ul>
@@ -52,9 +82,14 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <div className='flex justify-center items-center flex-row gap-8' >
               {
-                links.map(({ link, path }, index) => (
-                  <span key={index} className='text-[#7351d4] text-lg' ><Link to={path} >{link}</Link></span>
-                ))
+                user ?
+                  privateLinks.map(({ link, path }, index) => (
+                    <span key={index} className='text-[#7351d4]' ><Link to={path} >{link}</Link></span>
+                  ))
+                  :
+                  publicLinks.map(({ link, path }, index) => (
+                    <span key={index} className='text-[#7351d4]' ><Link to={path} >{link}</Link></span>
+                  ))
               }
             </div>
           </ul>
