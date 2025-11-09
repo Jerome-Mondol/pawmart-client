@@ -24,7 +24,7 @@ const RecentListings = () => {
               {
                 pets && 
                 pets.map(({category, date, description, email, image, location, name, price, _id}) => (
-                  <RecentListingsCard category={category} description={description} date={date} email={email} image={image} location={location} name={name} price={price} id={_id} />
+                  <RecentListingsCard key={_id} category={category} description={description} date={date} email={email} image={image} location={location} name={name} price={price} id={_id} />
                 ))
               }
             </div>

@@ -1,8 +1,10 @@
 import React from 'react'
 import Carousel from '../components/Carousel'
-import Category from './Category'
-import RecentListings from './RecentListings'
-import WhyAdopt from './WhyAdopt'
+import Category from '../sections/Category'
+import RecentListings from '../sections/RecentListings'
+import WhyAdopt from '../sections/WhyAdopt'
+import MeetOurPetHeroes from '../sections/PetHeros'
+
 
 const Home = () => {
   return (
@@ -12,6 +14,7 @@ const Home = () => {
         <Category />
         <RecentListings />
         <WhyAdopt />
+        <MeetOurPetHeroes />
       </div>
     </>
   )

@@ -51,12 +51,12 @@ const Category = () => {
     ];
   return (
     <>
-        <div className='p-20' >
+        <div className='p-20 bg-red-300/50' >
             <h1 className='text-4xl text-orange-500' >Categories</h1>
             <div className='grid justify-between items-center mt-5 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10' >
                 {
                     categories.map(({id, title, image, icon, description, route, bgColor, btn}) => (
-                        <Link to={route} ><CategoryCard key={id} id={id} title={title} image={image} icon={icon} description={description} route={route} bgColor={bgColor} btn={btn}/></Link>
+                        <Link key={id} to={route}><CategoryCard  id={id} title={title} image={image} icon={icon} description={description} route={route} bgColor={bgColor} btn={btn}/></Link>
                     ))
                 }
             </div>
