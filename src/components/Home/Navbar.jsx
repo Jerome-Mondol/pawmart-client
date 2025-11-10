@@ -49,7 +49,7 @@ const Navbar = () => {
     }
   ]
 
-  const { user, emailPasswordSignOut } = useAuth();
+  const { user, emailPasswordSignOut, loading } = useAuth();
 
   const handleSignOut = async (e) => {
     e.preventDefault();
@@ -60,7 +60,9 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar bg-white shadow-sm px-4 ">
+      {
+        loading ? <div>Loading</div> :
+        <div className="navbar bg-white shadow-sm px-4 ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -123,6 +125,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      }
     </>
   )
 }
