@@ -5,6 +5,8 @@ import SignupForm from "../components/Auth/SignupForm";
 import LoginForm from "../components/Auth/LoginForm";
 import PetsAndSupplies from "../pages/PetsAndSupplies";
 import { axiosInstance } from "../axios/axios";
+import PrivateRoute from "./PrivateRoute";
+import AddListing from "../pages/AddListing";
 
 const fetchPetsData = async() => {
     const res = await axiosInstance.get('/pets');
@@ -26,6 +28,13 @@ export const router = createBrowserRouter([
                 path: "/pets-and-supplies",
                 Component: PetsAndSupplies,
                 loader: fetchPetsData
+            },
+            {
+                path: '/add-listing',
+                element: 
+                <PrivateRoute>
+                    <AddListing />
+                </PrivateRoute>
             }
         ]
     },
@@ -36,5 +45,6 @@ export const router = createBrowserRouter([
     {
         path: '/login',
         Component: LoginForm
-    }
+    },
+    
 ])
