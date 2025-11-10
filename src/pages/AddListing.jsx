@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { axiosInstance } from '../axios/axios';
+import { secureAxios } from '../axios/axios';
 
 const AddListing = () => {
     const { user } = useAuth();
@@ -14,7 +14,7 @@ const AddListing = () => {
         console.log(data);
 
         try {
-            const res = await axiosInstance.post('/add-listing', JSON.stringify(data));
+            const res = await secureAxios.post('/add-listing', JSON.stringify(data));
             console.log("successfully added listing")
         }
         catch(err) {

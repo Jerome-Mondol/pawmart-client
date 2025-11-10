@@ -60,8 +60,7 @@ const Navbar = () => {
 
   return (
     <>
-      {
-        loading ? <div>Loading</div> :
+      
         <div className="navbar bg-white shadow-sm px-4 ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -125,7 +124,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      }
+      
     </>
   )
 }
