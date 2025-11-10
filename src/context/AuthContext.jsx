@@ -49,7 +49,7 @@ export const AuthProvider = ({children}) => {
         try {
             const result = await signInWithPopup(auth, provider);
             toast.success("Successfully logged in with Google")
-            return result;
+            return result;      
         }
         catch (err) {
             toast.error(`Error: ${err.message}`)

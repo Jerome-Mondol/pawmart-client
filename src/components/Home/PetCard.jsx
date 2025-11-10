@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RecentListingsCard = ({category, description, date, email, image, location, name, price, id}) => {
+const PetCard = ({category, description, date, email, image, location, name, price, id}) => {
   return (  
     <>
       <div className={`card shadow-sm bg-orange-400/50 rounded-lg overflow-hidden transition-transform hover:scale-105 duration-300 h-full`}>
@@ -26,4 +26,4 @@ const RecentListingsCard = ({category, description, date, email, image, location
   )
 }
 
-export default RecentListingsCard
+export default PetCard

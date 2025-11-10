@@ -40,7 +40,7 @@ const LoginForm = () => {
         setIsLoading(true);
         try {
             const result = await signInWithGoogle();
-            const token = result.user.getIdToken();
+            const token = await result.user.getIdToken();
             if(token) {
                 localStorage.setItem('token', token);
             }
@@ -88,7 +88,7 @@ const LoginForm = () => {
                 <p className="text-center text-gray-600 mt-6 text-sm">
                     Don't have an account?{" "}
                     <Link to={'/register'} className="text-orange-600 font-semibold hover:underline" >
-                        Sign Up
+                        Register here
                     </Link>
                 </p>
             </div>

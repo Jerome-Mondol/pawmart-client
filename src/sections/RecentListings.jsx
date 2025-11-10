@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { axiosInstance } from '../axios/axios';
-import RecentListingsCard from '../components/Home/RecentListingsCard';
+import PetCard from '../components/Home/PetCard';
 
 const RecentListings = () => {
   const[pets, setPets] = useState(null);
@@ -24,7 +24,7 @@ const RecentListings = () => {
               {
                 pets && 
                 pets.map(({category, date, description, email, image, location, name, price, _id}) => (
-                  <RecentListingsCard key={_id} category={category} description={description} date={date} email={email} image={image} location={location} name={name} price={price} id={_id} />
+                  <PetCard key={_id} category={category} description={description} date={date} email={email} image={image} location={location} name={name} price={price} id={_id} />
                 ))
               }
             </div>
