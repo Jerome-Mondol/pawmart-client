@@ -4,7 +4,7 @@ import { secureAxios } from '../axios/axios';
 
 const AddListing = () => {
     const { user } = useAuth();
-
+    
     const handleAddListing = async(e) => {
         e.preventDefault();
         const form = e.target;
@@ -16,6 +16,8 @@ const AddListing = () => {
         try {
             const res = await secureAxios.post('/add-listing', JSON.stringify(data));
             console.log("successfully added listing")
+            const token = await user.getIdToken();
+            console.log(token)
         }
         catch(err) {
             console.log(err)

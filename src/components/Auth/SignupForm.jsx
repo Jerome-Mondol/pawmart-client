@@ -72,7 +72,7 @@ const SignupForm = () => {
         setIsLoading(true);
         try {
             const result = await signInWithGoogle();
-            const token = result.user.getIdToken();
+            const token = await result.user.getIdToken();
             if(token) {
                 localStorage.setItem('token', token);
             }

@@ -7,9 +7,10 @@ import PetsAndSupplies from "../pages/PetsAndSupplies";
 import { axiosInstance } from "../axios/axios";
 import PrivateRoute from "./PrivateRoute";
 import AddListing from "../pages/AddListing";
+import MyListings from "../pages/MyListings";
 
 const fetchPetsData = async() => {
-    const res = await axiosInstance.get('/pets');
+    const res = await axiosInstance.get('/listings');
     const data = res.data;
 
     return data;
@@ -34,6 +35,13 @@ export const router = createBrowserRouter([
                 element: 
                 <PrivateRoute>
                     <AddListing />
+                </PrivateRoute>
+            },
+            {
+                path: '/my-listing',
+                element: 
+                <PrivateRoute>
+                    <MyListings />
                 </PrivateRoute>
             }
         ]

@@ -7,7 +7,7 @@ const RecentListings = () => {
   useEffect(() => {
     const fetchPets = async () => {
       try {
-        const res = await axiosInstance.get('/pets?count=6');
+        const res = await axiosInstance.get('/listings?count=6');
         setPets(res.data);
       }
       catch(err) {
