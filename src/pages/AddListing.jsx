@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { secureAxios } from '../axios/axios';
+import toast from 'react-hot-toast';
 
 const AddListing = () => {
     const { user } = useAuth();
@@ -15,9 +16,8 @@ const AddListing = () => {
 
         try {
             const res = await secureAxios.post('/add-listing', JSON.stringify(data));
-            console.log("successfully added listing")
             const token = await user.getIdToken();
-            console.log(token)
+            toast.success("Listing added successfully")
         }
         catch(err) {
             console.log(err)
