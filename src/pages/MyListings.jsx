@@ -13,7 +13,7 @@ const MyListings = () => {
   const fetchListings = async () => {
     try {
       const email = auth.currentUser?.email;
-      const res = await secureAxios.get(`/listings/${email}`);
+      const res = await secureAxios.get(`/user/listings/${email}`);
       setListings(res.data);
     } catch (err) {
       console.error("Error fetching listings:", err);

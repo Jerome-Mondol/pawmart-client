@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const PetCard = ({category, description, date, email, image, location, name, price, id}) => {
   return (  
@@ -18,7 +19,7 @@ const PetCard = ({category, description, date, email, image, location, name, pri
         <p className='text-orange-900'>Category: {category}</p>
         <p className='text-orange-900 font-bold text-xl tracking-wider'>{price == 0 ? "Free for adoption" : `${price}$`}</p>
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-primary text-sm sm:text-base">See details</button>
+          <Link to={`/listing/${id}`} ><button className="btn btn-primary text-sm sm:text-base">See details</button></Link>
         </div>
       </div>
     </div>
