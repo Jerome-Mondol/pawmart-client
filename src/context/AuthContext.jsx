@@ -42,7 +42,6 @@ export const AuthProvider = ({children}) => {
         }
         catch (err) {
             toast.error(`Error: ${err.message}`)
-            console.log(err)
         }
     }
 
@@ -62,7 +61,6 @@ export const AuthProvider = ({children}) => {
     const emailPasswordSignOut = async () => {
         try {
             const result = await signOut(auth);
-            console.log(result);
             toast.success("Successfully signed out");
         }
         catch(err) {

@@ -22,7 +22,7 @@ const Category = () => {
             icon: "🍖",
             description:
                 "Nutritious and tasty meals for your pets. Discover trusted brands and keep your buddy healthy.",
-            route: "/category-filtered-product/pet-food",
+            route: "/category-filtered-product/food",
             bgColor: "bg-green-900/50",
             btn: "Buy Now"
         },

@@ -9,7 +9,7 @@ const Footer = () => {
           <img src={Logo} alt="Pawmart" className='h-30' />
           <p>
             PawMart connects local pet owners and buyers for adoption and pet
-            care products.
+            care products. © 2025
           </p>
         </aside>
         <nav>

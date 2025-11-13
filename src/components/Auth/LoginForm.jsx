@@ -26,13 +26,11 @@ const LoginForm = () => {
             if (token) {
                 localStorage.setItem('token', token);
             }
-            console.log(token)
             setIsLoading(false);
             navigate('/')
         }
         catch (err) {
             toast.error(`Error: ${err.message}`)
-            console.log(err)
         }
     };
 
@@ -44,7 +42,6 @@ const LoginForm = () => {
             if(token) {
                 localStorage.setItem('token', token);
             }
-            console.log(result);
             setIsLoading(false);
             navigate('/')
         }

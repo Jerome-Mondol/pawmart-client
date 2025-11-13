@@ -16,7 +16,6 @@ const ListingDetails = () => {
   });
 
   const { user } = useAuth();
-  console.log(user)
 
   useEffect(() => {
     const fetchListing = async () => {

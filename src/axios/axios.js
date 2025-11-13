@@ -1,14 +1,17 @@
 import axios from 'axios';
 
+
+const url = "https://pawmart-server.onrender.com"
+
 export const axiosInstance = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: url,
     headers: {
         "Content-Type": "application/json",
     },
 })
 
 export const secureAxios = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: url,
   headers: {
     "Content-Type": "application/json",
   },

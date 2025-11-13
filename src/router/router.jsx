@@ -10,13 +10,25 @@ import AddListing from "../pages/AddListing";
 import MyListings from "../pages/MyListings";
 import ListingDetails from "../pages/ListingDetails";
 import MyOrders from "../pages/MyOrders";
+import Error from "../pages/Error";
+import FilteredProducts from "../pages/FilteredProducts";
 
 const fetchPetsData = async() => {
     const res = await axiosInstance.get('/listings');
     const data = res.data;
-
     return data;
 }
+
+export const filteredProductsLoader = async ({ params }) => {
+  try {
+    const res = await axiosInstance.get(`/category-filtered-product/${params.categoryName}`);
+    return res.data;
+  } catch (error) {
+    console.error("Error loading category products:", error);
+    throw new Response("Failed to fetch products", { status: 500 });
+  }
+};
+
 
 export const router = createBrowserRouter([
     {
@@ -34,7 +46,10 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/listing/:id',
-                Component: ListingDetails,
+                element:
+                <PrivateRoute>
+                    <ListingDetails />
+                </PrivateRoute> 
             },
             {
                 path: '/add-listing',
@@ -56,6 +71,11 @@ export const router = createBrowserRouter([
                 <PrivateRoute>
                     <MyOrders />
                 </PrivateRoute>
+            },
+            {
+                path: '/category-filtered-product/:categoryName',
+                Component: FilteredProducts,
+                loader: filteredProductsLoader
             }
         ]
     },
@@ -67,5 +87,9 @@ export const router = createBrowserRouter([
         path: '/login',
         Component: LoginForm
     },
+    {
+        path: '*',
+        Component: Error
+    }
     
 ])

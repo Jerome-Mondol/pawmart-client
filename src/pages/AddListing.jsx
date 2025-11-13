@@ -12,7 +12,6 @@ const AddListing = () => {
         const formData = new FormData(form);
 
         const data = Object.fromEntries(formData.entries())
-        console.log(data);
 
         try {
             const res = await secureAxios.post('/add-listing', JSON.stringify(data));
@@ -20,7 +19,7 @@ const AddListing = () => {
             toast.success("Listing added successfully")
         }
         catch(err) {
-            console.log(err)
+            toast.error(err.message);
         }
     }
 

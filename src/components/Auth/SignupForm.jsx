@@ -35,10 +35,9 @@ const SignupForm = () => {
                 photoURL,
                 email
             })
-            console.log(result.data);;
         }
         catch (err) {
-            console.log(err)
+            toast.error(err.message);
         }
     }
 
@@ -76,7 +75,7 @@ const SignupForm = () => {
             if(token) {
                 localStorage.setItem('token', token);
             }
-            console.log(result);
+            (result);
             setIsLoading(false);
             navigate('/')
         }
