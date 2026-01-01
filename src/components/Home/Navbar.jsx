@@ -11,6 +11,7 @@ const Navbar = () => {
       link: "Home",
       path: "/"
     },
+    
     {
       link: "Pets and Supplies",
       path: '/pets-and-supplies'
@@ -115,7 +116,7 @@ const Navbar = () => {
                 ))
               ) : (
                 <div className="flex items-center gap-2">
-                  <img src={user?.photoURL} alt="Profile" className="rounded-full h-15 w-15" />
+                  <Link to={'/profile'} ><img src={user?.photoURL} alt="Profile" className="rounded-full h-15 w-15" /></Link>
                   <button onClick={handleSignOut} className="bg-red-500 px-4 py-2 rounded-lg text-white cursor-pointer">Log out</button>
                 </div>
               )

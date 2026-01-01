@@ -12,6 +12,7 @@ import ListingDetails from "../pages/ListingDetails";
 import MyOrders from "../pages/MyOrders";
 import Error from "../pages/Error";
 import FilteredProducts from "../pages/FilteredProducts";
+import Profile from "../pages/Profile";
 
 const fetchPetsData = async() => {
     const res = await axiosInstance.get('/listings');
@@ -63,6 +64,13 @@ export const router = createBrowserRouter([
                 element: 
                 <PrivateRoute>
                     <MyListings />
+                </PrivateRoute>
+            },
+            {
+                path: '/profile',
+                element:
+                <PrivateRoute>
+                    <Profile />
                 </PrivateRoute>
             },
             {

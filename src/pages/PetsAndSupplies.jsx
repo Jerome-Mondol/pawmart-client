@@ -6,10 +6,8 @@ const PetsAndSupplies = () => {
   const pets = useLoaderData();
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  // extract all unique categories from data
   const categories = ["all", ...new Set(pets.map((p) => p.category))];
 
-  // filter pets based on selected category
   const filteredPets =
     selectedCategory === "all"
       ? pets
@@ -21,7 +19,6 @@ const PetsAndSupplies = () => {
         Pets and Supplies
       </h1>
 
-      {/* Filter Dropdown */}
       <div className="flex justify-center mb-8 ">
         <select
           className="select select-bordered w-full max-w-xs text-white"
@@ -36,7 +33,6 @@ const PetsAndSupplies = () => {
         </select>
       </div>
 
-      {/* Cards */}
       <div className="grid justify-between items-center mt-5 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 px-10 my-5">
         {filteredPets &&
           filteredPets.map(
