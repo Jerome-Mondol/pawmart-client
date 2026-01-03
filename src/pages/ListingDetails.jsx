@@ -62,7 +62,9 @@ const ListingDetails = () => {
 
   if (loading)
     return (
-      <div className="text-center py-10 text-gray-500 text-lg">Loading details...</div>
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner text-primary text-3xl"></span>
+      </div>
     );
 
   if (!listing)

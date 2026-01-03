@@ -62,7 +62,11 @@ const MyListings = () => {
   }, []);
 
   if (loading)
-    return <div className="text-center py-10">Loading your listings...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner text-primary text-3xl"></span>
+      </div>
+    );
 
   return (
     <section className="max-w-5xl mx-auto p-6 text-gray-700">

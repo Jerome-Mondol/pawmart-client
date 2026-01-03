@@ -10,8 +10,8 @@ const PrivateRoute = ({ children }) => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center h-screen text-lg font-semibold">
-                Checking authentication...
+            <div className="flex items-center justify-center h-screen">
+                <span className="loading loading-spinner text-primary"></span>
             </div>
            )
     }

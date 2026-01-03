@@ -27,8 +27,8 @@ const MyOrders = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-screen text-gray-500">
-        Loading your orders...
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner text-primary text-3xl"></span>
       </div>
     );
 

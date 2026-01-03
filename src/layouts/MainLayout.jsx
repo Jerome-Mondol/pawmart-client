@@ -6,9 +6,11 @@ import Footer from '../components/Home/Footer'
 const MainLayout = () => {
   return (
     <>
-        <div>
+        <div className="pb-24 min-h-screen flex flex-col" style={{ paddingTop: 'var(--navbar-height)' }}>
             <Navbar />
-            <Outlet />
+            <main className="grow">
+              <Outlet />
+            </main>
             <Footer />
         </div>
     </>

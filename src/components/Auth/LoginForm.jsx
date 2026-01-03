@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router'
+import React, { useState, useRef } from "react";
+import { useNavigate, Link } from 'react-router'
 import { useAuth } from "../../hooks/useAuth";
-import { Link } from "react-router";
 import toast from "react-hot-toast";
 
 const LoginForm = () => {
     const { logInWithEmailAndPassword, signInWithGoogle } = useAuth();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
 
     const navigate = useNavigate();
-
 
     const handleSubmit = async (e) => {
         setIsLoading(true);
         setError(null);
+        e.preventDefault();
         try {
-            e.preventDefault();
             const email = e.target.email.value;
             const password = e.target.password.value;
-
 
             const result = await logInWithEmailAndPassword(email, password);
             const token = await result.user.getIdToken();
             if (token) {
                 localStorage.setItem('token', token);
             }
-            setIsLoading(false);
             navigate('/')
-        }
-        catch (err) {
+        } catch (err) {
             toast.error(`Error: ${err.message}`)
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -42,14 +41,19 @@ const LoginForm = () => {
             if(token) {
                 localStorage.setItem('token', token);
             }
-            setIsLoading(false);
             navigate('/')
-        }
-        catch(err)  {
+        } catch(err)  {
             toast.error(`Error: ${err.message}`)
+        } finally {
+            setIsLoading(false);
         }
     }
 
+    const fillAdmin = () => {
+        if (emailRef.current) emailRef.current.value = 'jeromemondol11@gmail.com';
+        if (passwordRef.current) passwordRef.current.value = 'Jerome';
+        // optional: focus login button
+    }
 
     return (
         <section className="min-h-screen bg-orange-50 flex items-center justify-center px-4 ">
@@ -62,14 +66,14 @@ const LoginForm = () => {
                         <label className="block mb-1 text-gray-700 font-medium">
                             Email Address
                         </label>
-                        <input type="email" name="email" placeholder="example@mail.com" className="input input-bordered w-full rounded-lg form-font font-bold" required />
+                        <input ref={emailRef} type="email" name="email" placeholder="example@mail.com" className="input input-bordered w-full rounded-lg form-font font-bold" required />
                     </div>
 
                     <div>
                         <label className="block mb-1 text-gray-700 font-medium">
                             Password
                         </label>
-                        <input type="password" name="password" placeholder="••••••••" className="input input-bordered w-full rounded-lg form-font font-bold" required />
+                        <input ref={passwordRef} type="password" name="password" placeholder="••••••••" className="input input-bordered w-full rounded-lg form-font font-bold" required />
                     </div>
 
                     <div onClick={handleGoogleSignIn} className="flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-lg px-5 py-2 cursor-pointer text-black text-lg font-medium shadow-sm transition-colors duration-200 shadow-sm">
@@ -77,8 +81,10 @@ const LoginForm = () => {
                         <span>Login with Google</span>
                     </div>
 
-                    <button type="submit" disabled={isLoading} className="btn bg-orange-500 hover:bg-orange-600 border-none w-full text-white text-lg rounded-lg" >
-                        {isLoading ? "Logging in....." : "Log in"}
+                    <button type="button" onClick={fillAdmin} className="btn btn-outline w-full text-gray-700   ">Fill admin credentials</button>
+
+                    <button type="submit" disabled={isLoading} className="btn bg-orange-500 hover:bg-orange-600 border-none w-full text-white text-lg rounded-lg flex items-center justify-center gap-2" >
+                        {isLoading ? (<><span className="loading loading-spinner"></span> Logging in...</>) : "Log in"}
                     </button>
                 </form>
 

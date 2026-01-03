@@ -13,6 +13,9 @@ import MyOrders from "../pages/MyOrders";
 import Error from "../pages/Error";
 import FilteredProducts from "../pages/FilteredProducts";
 import Profile from "../pages/Profile";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import Terms from "../pages/Terms";
 
 const fetchPetsData = async() => {
     const res = await axiosInstance.get('/listings');
@@ -48,9 +51,7 @@ export const router = createBrowserRouter([
             {
                 path: '/listing/:id',
                 element:
-                <PrivateRoute>
                     <ListingDetails />
-                </PrivateRoute> 
             },
             {
                 path: '/add-listing',
@@ -79,6 +80,18 @@ export const router = createBrowserRouter([
                 <PrivateRoute>
                     <MyOrders />
                 </PrivateRoute>
+            },
+            {
+                path: '/about',
+                Component: About
+            },
+            {
+                path: '/contact',
+                Component: Contact
+            },
+            {
+                path: '/terms',
+                Component: Terms
             },
             {
                 path: '/category-filtered-product/:categoryName',

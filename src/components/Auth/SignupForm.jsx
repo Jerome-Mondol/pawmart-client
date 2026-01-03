@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router'
+import { useNavigate, Link } from 'react-router'
 import { useAuth } from "../../hooks/useAuth";
-import { Link } from "react-router";
 import toast from "react-hot-toast";
 import { axiosInstance } from '../../axios/axios'
 
@@ -132,8 +131,8 @@ const SignupForm = () => {
 
 
 
-                    <button type="submit" disabled={isLoading} className="btn bg-orange-500 hover:bg-orange-600 border-none w-full text-white text-lg rounded-lg" >
-                        {isLoading ? "Creating Account..." : "Sign Up"}
+                    <button type="submit" disabled={isLoading} className="btn bg-orange-500 hover:bg-orange-600 border-none w-full text-white text-lg rounded-lg flex items-center justify-center gap-2" >
+                        {isLoading ? (<><span className="loading loading-spinner"></span> Creating...</>) : "Sign Up"}
                     </button>
                 </form>
 
