@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 
-// const url = "https://pawmart-server.onrender.com"
-const url = "http://localhost:5000"
+const url = "https://pawmart-server.onrender.com"
+// const url = "http://localhost:5000"
 
 export const axiosInstance = axios.create({
     baseURL: url,
